@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'establishRetrosansOTF';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GowunBatang-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    background-color: #f9f7f7;
+    color: #333;
+    font-family: 'GowunBatang-Regular', sans-serif;
+}
+
+body > header > div > nav > a {
+    color: 112d4e; 
+    text-decoration: none !important; /* 강제 적용 */
+}
+body > header > div > nav > a:hover {
+    color: 112d4e;
+    text-decoration: none !important; /* 강제 적용 */
+}
