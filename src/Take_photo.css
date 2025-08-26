@@ -1,0 +1,14 @@
+/* 화면 전체 배경 */
+.choose_container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./img/choose_your_frame.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+    display: flex;
+    justify-content: center; /* 가로 중앙 */
+    align-items: center;     /* 세로 중앙 */
+  }
+  
