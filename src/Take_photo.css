@@ -13,7 +13,7 @@
   flex-direction: row;      /* 가로 정렬 */
   justify-content: center;  /* 가로 중앙 */
   align-items: center;      /* 세로 중앙 */
-  gap: 200px;                /* 버튼 사이 간격 */
+  gap: 300px;                /* 버튼 사이 간격 */
 }
 
 /* 버튼 스타일 */
@@ -30,10 +30,6 @@
 .photo-btn4 img,
 .photo-btn5 img {
   width: 300px;
-  height: auto;
+  height: 400px;
 }
 
-
-#no2{
-  margin-left: 100px;
-}
