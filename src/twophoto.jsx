@@ -29,26 +29,28 @@ function Twophoto() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.webcamWrapper}>
-        <Webcam
-          className={styles.webcam}
-          audio={false}
-          videoConstraints={{ facingMode: "user" }}
-        />
-
-        {villager && (
-          <div className={styles.villagerOverlay}>
-            <img src={villager.image_url} alt={villager.name} />
-            <p>{villager.name}</p>
-          </div>
-        )}
+      <div className={styles.webcamArea}>
+        <div className={styles.webcamWrapper}>
+          <Webcam
+            className={styles.webcam}
+            audio={false}
+            videoConstraints={{ facingMode: "user" }}
+          />
+  
+          {villager && (
+            <div className={styles.villagerOverlay}>
+              <img src={villager.image_url} alt={villager.name} />
+              <p>{villager.name}</p>
+            </div>
+          )}
+        </div>
+  
+        <button className={styles.button}>
+          <img src={startbtn} alt="Start" />
+        </button>
       </div>
-        <br />
-      <button className={styles.button}>
-        <img src={startbtn} alt="Start" />
-      </button>
     </div>
-  );
+  );  
 }
 
 export default Twophoto;
