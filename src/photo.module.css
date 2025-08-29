@@ -41,6 +41,14 @@
   border-radius: 12px;
 }
 
+.webcamArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* 웹캠과 버튼 간격 */
+  z-index: 2;
+}
+
 /* 주민 사진: 웹캠 오른쪽 절반 덮기 */
 .villagerOverlay {
   position: absolute;
