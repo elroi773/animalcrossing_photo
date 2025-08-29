@@ -7,7 +7,6 @@ import startbtn from "./img/start_button.png";
 function Twophoto() {
   const [villager, setVillager] = useState(null);
 
-  // 랜덤 주민 데이터 가져오기
   const fetchVillager = async () => {
     try {
       const response = await axios.get("https://api.nookipedia.com/villagers", {
@@ -30,19 +29,21 @@ function Twophoto() {
 
   return (
     <div className={styles.container}>
-      <Webcam
-        className={styles.webcam}
-        audio={false}
-        videoConstraints={{ facingMode: "user" }}
-      />
+      <div className={styles.webcamWrapper}>
+        <Webcam
+          className={styles.webcam}
+          audio={false}
+          videoConstraints={{ facingMode: "user" }}
+        />
 
-      {villager && (
-        <div className={styles.villagerOverlay}>
-          <img src={villager.image_url} alt={villager.name} />
-          <p>{villager.name}</p>
-        </div>
-      )}
-
+        {villager && (
+          <div className={styles.villagerOverlay}>
+            <img src={villager.image_url} alt={villager.name} />
+            <p>{villager.name}</p>
+          </div>
+        )}
+      </div>
+        <br />
       <button className={styles.button}>
         <img src={startbtn} alt="Start" />
       </button>
