@@ -31,20 +31,20 @@ function Fourphoto() {
     <div className={styles.container}>
       <div className={styles.webcamArea}>
         <div className={styles.webcamWrapper}>
+          {villager && <p className={styles.villagerName}>{villager.name}</p>}{" "}
+          {/* 이름이 웹캠 바로 위 */}
           <Webcam
             className={styles.webcam}
             audio={false}
             videoConstraints={{ facingMode: "user" }}
           />
-  
           {villager && (
             <div className={styles.villagerOverlay}>
               <img src={villager.image_url} alt={villager.name} />
-              <p>{villager.name}</p>
             </div>
           )}
         </div>
-  
+
         <button className={styles.button}>
           <img src={startbtn} alt="Start" />
         </button>
