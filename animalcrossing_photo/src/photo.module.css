@@ -52,7 +52,7 @@
   height: 100%;
   border: 1px solid #333;
   border-radius: 12px;
-  transform: scaleX(-1); /* 좌우 반전 */
+  /* transform: scaleX(-1); 좌우 반전 */
 }
 
 .webcamArea {
