@@ -1,0 +1,43 @@
+*{
+  margin: 0;
+}/* 화면 전체 배경 */
+.choose_container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("./img/chooseframe_back.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  display: flex;
+  flex-direction: row;      /* 가로 정렬 */
+  justify-content: center;  /* 가로 중앙 */
+  align-items: center;      /* 세로 중앙 */
+  gap: 8.5%;                /* 버튼 사이 간격 */
+}
+
+/* 버튼 스타일 */
+.photo-btn2,
+.photo-btn4,
+.photo-btn5 {
+  margin-top: 10%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.photo-btn2 img,
+.photo-btn4 img,
+.photo-btn5 img {
+  width: 290px;
+  height: 390px;
+}
+
+.photo-btn2 img:hover,
+.photo-btn4 img:hover,
+.photo-btn5 img:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6); /* 안쪽 그림자 */
+  transition: box-shadow 0.3s ease; /* 부드럽게 변하게 */
+}
+
