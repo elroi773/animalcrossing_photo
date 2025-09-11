@@ -28,7 +28,7 @@ export default function Intro() {
   return (
     <div className="intro-container">
       <div className="button-wrapper">
-        <button className="photo-btn" onClick={() => handleNavigate("/take-photo")}>
+        <button className="photo-btn" onClick={() => handleNavigate("/choose-photo")}>
           <img src={takePhotoImg} alt="사진찍으러가기 버튼 사진" />
         </button>
         <button className="photo-btn" onClick={() => handleNavigate("/gallery")}>

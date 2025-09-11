@@ -1,10 +1,10 @@
-import "./Take_photo.css";
+import "./Choose_photo.css";
 import { useNavigate } from "react-router-dom";
 import twophotoImg from "./img/2photo.png";
 import fourphotoImg from "./img/4photo.png";
 import fivephotoImg from "./img/5photo.png";
 
-export default function Take_photo() {
+export default function Choose_photo() {
   const navigate = useNavigate();
 
   const handleNavigate = (path) => {

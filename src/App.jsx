@@ -1,7 +1,7 @@
 // App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Intro from "./intro";
-import TakePhoto from "./Take_photo";
+import ChoosePhoto from "./Choose_photo";
 import Gallery from "./Gallery";
 import Twophoto from "./twophoto";
 import Fourphoto from "./fourphoto";
@@ -12,7 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Intro />} />
-        <Route path="/take-photo" element={<TakePhoto />} />
+        <Route path="/choose-photo" element={<ChoosePhoto />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/twophoto" element={<Twophoto />} />
         <Route path="/fourphoto" element={<Fourphoto />} />
