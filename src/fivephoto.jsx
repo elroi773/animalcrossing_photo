@@ -1,11 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Webcam from "react-webcam";
 import styles from "./photo.module.css";
 import startbtn from "./img/start_button.png";
 
 function Fivephoto() {
   const [villager, setVillager] = useState(null);
+  const navigate = useNavigate();
+
+  const handleNavigate = (path) => {
+    navigate(path);
+  };
 
   const fetchVillager = async () => {
     try {
@@ -45,7 +51,9 @@ function Fivephoto() {
           )}
         </div>
 
-        <button className={styles.button}>
+        <button
+          className={styles.button}
+          onClick={() => handleNavigate("/take-photo")}>
           <img src={startbtn} alt="Start" />
         </button>
       </div>
