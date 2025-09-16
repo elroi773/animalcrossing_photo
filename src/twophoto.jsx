@@ -10,7 +10,7 @@ function Twophoto() {
   const navigate = useNavigate();
 
   const handleNavigate = (path) => {
-    navigate(path);
+    navigate(path, { state: { villager, cuts: 2 } }); // 주민 정보와 컷 수 전달
   };
 
   const fetchVillager = async () => {

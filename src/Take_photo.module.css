@@ -1,0 +1,179 @@
+@font-face {
+  font-family: "YFavorite";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/YOnepickTTF-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "YFavorite";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/YOnepickTTF-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 배경 블러 */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("./img/take_a_photo_background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(8px);
+  z-index: 1;
+}
+
+/* 웹캠 박스: 화면의 60% 크기 */
+.webcamWrapper {
+  position: relative;
+  z-index: 2;
+  width: 50vw; /* 화면의 60% */
+  max-width: 700px; /* 최대 900px 제한 */
+  /* aspect-ratio: 2 / 2; 정사각형 유지 */
+}
+
+/* 웹캠 */
+.webcam {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #333;
+  border-radius: 12px;
+  transform: scaleX(-1); /* 좌우 반전 */
+}
+
+.webcamArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* 웹캠과 버튼 간격 */
+  z-index: 2;
+}
+
+/* 주민 사진: 웹캠 오른쪽 절반 덮기 */
+.villagerOverlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 12px 12px 0;
+  z-index: 3;
+}
+
+.villagerOverlay img {
+  max-height: 80%;
+  max-width: 90%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.villagerOverlay p {
+  margin-top: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+}
+
+.button {
+  margin-top: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.button img:hover {
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6); /* 안쪽 그림자 */
+  transition: box-shadow 0.3s ease; /* 부드럽게 변하게 */
+  border-radius: 55px; /* 모서리 부드럽게 (선택사항) */
+}
+
+.villagerName {
+  margin-bottom: 10px; /* 웹캠과 이름 사이 간격 */
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "YFavorite";
+  text-align: center;
+  color: antiquewhite;
+
+  /* 텍스트 그림자 */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* 카운트다운 표시 */
+.countdown {
+  position: absolute;
+  top: 48%;
+  left: 25%; /* 웹캠 왼쪽 절반 중앙 */
+  transform: translate(-50%, -50%);
+  font-family: "YFavorite";
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 1s ease-in-out infinite;
+  z-index: 4;
+}
+
+.countdown span {
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  font-family: "YFavorite";
+}
+
+.complete {
+  position: absolute;
+  top: 50%;
+  left: 25%; /* 웹캠 왼쪽 절반 중앙 */
+  transform: translate(-50%, -50%);
+  background: rgba(76, 175, 80, 0.9);
+  border-radius: 20px;
+  padding: 20px 40px;
+  animation: fadeIn 0.5s ease-in-out;
+  z-index: 4;
+}
+
+.complete span {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* 촬영 정보 */
+.captureInfo {
+  position: absolute;
+  top: 4px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-family: "YFavorite";
+  font-size: 16px;
+  z-index: 4;
+}
