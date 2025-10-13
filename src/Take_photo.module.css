@@ -54,7 +54,7 @@
   height: 100%;
   border: 1px solid #333;
   border-radius: 12px;
-  transform: scaleX(-1); /* 좌우 반전 */
+  transform: scaleX(-1);
 }
 
 .webcamArea {
@@ -124,17 +124,15 @@
 /* 카운트다운 표시 */
 .countdown {
   position: absolute;
-  top: 48%;
-  left: 25%; /* 웹캠 왼쪽 절반 중앙 */
-  transform: translate(-50%, -50%);
+  top: 4px;
+  left: 90px;
+  background: rgba(255, 59, 59, 0.7);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
   font-family: "YFavorite";
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: pulse 1s ease-in-out infinite;
+  font-size: 16px;
   z-index: 4;
 }
 
@@ -148,9 +146,10 @@
 .complete {
   position: absolute;
   top: 50%;
-  left: 25%; /* 웹캠 왼쪽 절반 중앙 */
+  left: 50%; /* 웹캠 왼쪽 절반 중앙 */
   transform: translate(-50%, -50%);
   background: rgba(76, 175, 80, 0.9);
+  font-family: "YFavorite";
   border-radius: 20px;
   padding: 20px 40px;
   animation: fadeIn 0.5s ease-in-out;
