@@ -23,21 +23,18 @@ app.get("/api/villagers", async (req, res) => {
   }
 });
 
-// 이미지 프록시 추가
-app.get("/image-proxy/*", async (req, res) => {
+// 이미지 프록시
+app.get(/^\/image-proxy\/(.+)/, async (req, res) => {
+  const path = req.params[0]; // 정규식 캡처 그룹
+  const imageUrl = `https://dodo.ac/np/images/${path}`;
+
   try {
-    const path = req.params[0]; // * 에 매칭된 값은 req.params[0]으로 가져와야 함
-    const imageUrl = `https://dodo.ac/${path}`;
-    console.log("Proxy fetching:", imageUrl);
-
     const response = await axios.get(imageUrl, { responseType: "arraybuffer" });
-
     res.set("Content-Type", response.headers["content-type"]);
-    res.set("Access-Control-Allow-Origin", "*");
     res.send(response.data);
   } catch (err) {
-    console.error("이미지 프록시 에러:", err.message);
-    res.status(500).send("Proxy failed");
+    console.error("이미지 로드 실패:", err.message);
+    res.status(500).send("이미지 로드 실패");
   }
 });
 

@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Webcam from "react-webcam";
-// import html2canvas from "html2canvas";
 import styles from "./Take_photo.module.css";
 
 export default function Take_photo(){
@@ -32,7 +31,7 @@ export default function Take_photo(){
 
 			const villagerImg = new Image();
 			villagerImg.crossOrigin = "anonymous";
-			villagerImg.src = villager.image_url;
+			villagerImg.src = `/image-proxy${new URL(villager.image_url).pathname}`;
 			await new Promise((res) => (villagerImg.onload = res));
 
 			const canvas = document.createElement("canvas");
@@ -123,7 +122,9 @@ export default function Take_photo(){
 				/>
 
 				<div className={styles.villagerOverlay}>
-					<img src={`/image-proxy${new URL(villager.image_url).pathname}`} alt={villager.name} crossOrigin="anonymous" />
+					<img src={`/image-proxy${new URL(villager.image_url).pathname}`}
+						alt={villager.name}
+						crossOrigin="anonymous" />
 				</div>
 
 				{!isComplete && countdown > 0 && (<div className={styles.countdown}>{countdown}</div>)}

@@ -46,7 +46,8 @@ function Fivephoto() {
           />
           {villager && (
             <div className={styles.villagerOverlay}>
-              <img src={villager.image_url} alt={villager.name} />
+              <img src={`/image-proxy${new URL(villager.image_url).pathname}`}
+                  alt={villager.name} />
             </div>
           )}
         </div>
