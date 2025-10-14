@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Webcam from "react-webcam";
-import html2canvas from "html2canvas";
+// import html2canvas from "html2canvas";
 import styles from "./Take_photo.module.css";
 
 export default function Take_photo(){
@@ -22,12 +22,17 @@ export default function Take_photo(){
 	// 사진 캡처(주민 + 웹캠) 함수
 	const capturePhoto = useCallback(async () => {
 		try {
+			if (!webcamRef.current) {
+				console.error("웹캠이 아직 준비되지 않았습니다.");
+				return;
+			}
+
 			const webcamImage = webcamRef.current.getScreenshot();
 			if (!webcamImage) return console.error("웹캠 이미지 캡처 실패");
 
 			const villagerImg = new Image();
 			villagerImg.crossOrigin = "anonymous";
-			villagerImg.src = `/image-proxy${new URL(villager.image_url).pathname}`;
+			villagerImg.src = villager.image_url;
 			await new Promise((res) => (villagerImg.onload = res));
 
 			const canvas = document.createElement("canvas");
@@ -112,6 +117,7 @@ export default function Take_photo(){
 					ref={webcamRef}
 					className={styles.webcam}
 					audio={false}
+					onUserMedia={() => setCountdown(7)}
 					screenshotFormat="image/jpeg"
 					videoConstraints={{ facingMode: "user" }}
 				/>

@@ -15,7 +15,12 @@ function Fivephoto() {
 
   const fetchVillager = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/villagers"); // 프록시 서버 호출
+      const response = await axios.get("https://api.nookipedia.com/villagers", {
+        headers: {
+          "X-API-KEY": "e25f17a9-12b3-4033-8f59-da299adfe32a",
+          "Accept-Version": "1.0.0",
+        },
+      });
       const data = response.data;
       const randomVillager = data[Math.floor(Math.random() * data.length)];
       setVillager(randomVillager);
