@@ -21,11 +21,11 @@
 }
 
 .photo-slot-left {
-  width: 50%;
-  aspect-ratio: 450 / 500;
-  background: #cccccc;
+  width: 45%;
+  aspect-ratio: 450 / 600;
   border-radius: 5px;
   z-index: 1;
+  margin-top: -70px;
 }
 
 .right-panel {
@@ -57,7 +57,7 @@
   width: 100%;
   height: 100%;
   display: block;
-  pointer-events: none; /* 이미지 자체는 클릭되지 않도록 설정 */
+  pointer-events: none;
 }
 
 /* 크기 조절 핸들 스타일 */
@@ -112,7 +112,7 @@
 /* --- 사진 그리드 스타일 --- */
 .photo-grid { width: 100%; height: 100%; display: grid; gap: 5px; }
 .grid-2 { grid-template-rows: repeat(2, 1fr); }
-.grid-4 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); }
+.grid-4 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); margin-top: 100px;}
 .grid-5 { grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(2, 1fr); }
 .grid-5 .user-photo:nth-child(-n+2) { grid-column: span 3; }
 .grid-5 .user-photo:nth-child(n+3) { grid-column: span 2; }
