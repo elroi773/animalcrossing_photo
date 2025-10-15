@@ -1,0 +1,119 @@
+.sticker-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 반응형과 드래그 기능의 기준점 */
+.sticker-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  position: relative;
+}
+
+.photo-slot-left {
+  width: 50%;
+  aspect-ratio: 450 / 500;
+  background: #cccccc;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.right-panel {
+  width: 50%;
+  aspect-ratio: 380 / 500;
+  background: white;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+/* Wrapper */
+.sticker-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  user-select: none;
+  transform-origin: center center; /* 회전 기준은 항상 중앙 */
+  border: 2px dashed transparent; /* 평소엔 테두리 숨김 */
+}
+
+/* 활성화된 스티커에 파란색 점선 테두리 표시 */
+.sticker-wrapper.active {
+  border-color: #007bff;
+}
+
+/* Wrapper 안의 실제 이미지 스타일 */
+.sticker-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none; /* 이미지 자체는 클릭되지 않도록 설정 */
+}
+
+/* 크기 조절 핸들 스타일 */
+.resize-handle {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  width: 16px;
+  height: 16px;
+  background: #007bff;
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: nwse-resize;
+  z-index: 11;
+}
+
+/* 회전 핸들 스타일 */
+.rotate-handle {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background: #007bff;
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: grab;
+  z-index: 11;
+}
+
+.finish-btn {
+  position: absolute;
+  bottom: 5%;
+  right: 0%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.finish-btn img {
+  width: 200px;
+  max-width: 100%;
+  transition: transform 0.2s;
+}
+
+.finish-btn:hover img {
+  transform: scale(1.05);
+}
+
+/* --- 사진 그리드 스타일 --- */
+.photo-grid { width: 100%; height: 100%; display: grid; gap: 5px; }
+.grid-2 { grid-template-rows: repeat(2, 1fr); }
+.grid-4 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); }
+.grid-5 { grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(2, 1fr); }
+.grid-5 .user-photo:nth-child(-n+2) { grid-column: span 3; }
+.grid-5 .user-photo:nth-child(n+3) { grid-column: span 2; }
+.user-photo { width: 100%; height: 100%; object-fit: cover; }

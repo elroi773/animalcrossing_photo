@@ -71,7 +71,7 @@ export default function Take_photo(){
 			if (newImages.length >= cuts) {
 				setIsComplete(true);
 				setTimeout(() => {
-				navigate("/result", { state: { villager, images: newImages, cuts } });
+				navigate("/sticker", { state: { villager, images: newImages, cuts } });
 				}, 1000);
 			} else {
 				setCountdown(7);

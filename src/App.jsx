@@ -8,6 +8,7 @@ import Fourphoto from "./fourphoto";
 import Fivephoto from "./fivephoto";
 import Takephoto from "./Take_photo";
 import Result from "./Result";
+import StickerResult from "./sticker";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/fivephoto" element={<Fivephoto />} />
         <Route path="/take-photo" element={<Takephoto />} />
         <Route path="/result" element={<Result />} />
+         <Route path="/sticker" element={<StickerResult />} />
       </Routes>
     </Router>
   );
