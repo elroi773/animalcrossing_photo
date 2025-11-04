@@ -11,7 +11,7 @@
 /* 반응형과 드래그 기능의 기준점 */
 .sticker-frame {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 20px;
   width: 100%;
@@ -25,7 +25,8 @@
   aspect-ratio: 450 / 600;
   border-radius: 5px;
   z-index: 1;
-  margin-top: -70px;
+  /* margin-top을 -70px에서 -140px로 수정하여 사진과 스티커 전체를 위로 올립니다. */
+  margin-bottom: 80px; /* ◀ 이 값을 0으로 수정 (또는 줄 삭제) */
 }
 
 .right-panel {
@@ -34,6 +35,10 @@
   background: white;
   border-radius: 5px;
   z-index: 1;
+  
+  /* ▼ 아래 두 줄 추가 */
+  padding-left: 15px; /* 스티커를 오른쪽으로 밀어낼 간격 (값 조절 가능) */
+  box-sizing: border-box; /* 패딩이 전체 레이아웃을 밀어내지 않도록 */
 }
 
 /* Wrapper */
@@ -58,6 +63,8 @@
   height: 100%;
   display: block;
   pointer-events: none;
+  position: relative;
+  z-index: 10; /* 스티커 이미지가 배경(흰 네모)보다 위에 보이도록 */
 }
 
 /* 크기 조절 핸들 스타일 */

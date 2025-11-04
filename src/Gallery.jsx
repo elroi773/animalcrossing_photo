@@ -1,31 +1,108 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
+import './Gallery.css'; 
 
 export default function Gallery() {
-  const [photos, setPhotos] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:5173/photos")
-      .then(res => res.json())
-      .then(data => setPhotos(data));
-  }, []);
+  const [stickers, setStickers] = useState([]); 
+  const [isLoading, setIsLoading] = useState(true); 
 
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5173/photos/${id}`, { method: "DELETE" });
-    setPhotos(photos.filter(photo => photo.id !== id));
+    if (!confirm('정말 이 사진을 삭제하시겠어요?')) return;
+
+    const prevStickers = stickers;
+    setStickers(prev => prev.filter(p => Number(p.id) !== Number(id)));
+
+    try {
+      const res = await fetch(`http://localhost:3001/photos/${id}`, { method: 'DELETE' });
+
+      if (res.ok) {
+        return;
+      }
+
+      if (res.status === 404) {
+        console.warn(`삭제 대상 없음 (id: ${id}) — 서버가 404를 반환했습니다.`);
+        alert('이미 삭제되었거나 존재하지 않는 사진입니다.');
+        return;
+      }
+
+      const txt = await res.text();
+      throw new Error(`삭제 실패: ${res.status} ${txt}`);
+    } catch (err) {
+      console.error('사진 삭제 중 오류:', err);
+      // rollback UI
+      setStickers(prev => {
+        // if item is already back in prev (unlikely), avoid duplicates
+        const exists = prev.some(p => Number(p.id) === Number(id));
+        if (exists) return prev;
+        const restored = prevStickers.find(p => Number(p.id) === Number(id));
+        return restored ? [restored, ...prev] : prev;
+      });
+      alert('사진 삭제 실패');
+    }
   };
 
+  useEffect(() => {
+    const fetchGalleryData = async () => {
+      try {
+        // 데이터 요청
+        const response = await fetch('http://localhost:3001/photos');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        // 변수 저장
+        const data = await response.json();
+        
+        // 실제 저장
+        setStickers(data); 
+        
+      } catch (error) {
+        console.error("갤러리 데이터 로딩 실패:", error);
+      } finally {
+        setIsLoading(false); // 로딩 완료
+      }
+    };
+
+    fetchGalleryData();
+  }, []); 
+
+  // 날짜 포맷팅 함수
+  const formatDate = (dateString) => {
+    // ...
+    return new Date(dateString).toLocaleDateString('ko-KR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
+  // 로딩 중일 때
+  if (isLoading) {
+    return <div className="gallery-container"><h2>갤러리 로딩 중...</h2></div>;
+  }
+
+  // 로딩 완료 후
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(150px,1fr))", gap: "10px" }}>
-      {photos.map(photo => (
-        <div key={photo.id} style={{ position: "relative" }}>
-          <img src={photo.url} alt="Photo" style={{ width: "100%", height: "150px", objectFit: "cover" }} />
-          <button
-            onClick={() => handleDelete(photo.id)}
-            style={{ position: "absolute", top: 5, right: 5, background: "red", color: "white", border: "none", borderRadius: 5, padding: "2px 5px", cursor: "pointer" }}
-          >
-          </button>
-        </div>
-      ))}
+    <div className="gallery-container">
+      <div className="gallery-grid">
+        {stickers.map((item) => (
+          <div key={item.id} className="gallery-item"> 
+            
+            {/* DB 링크로 사진 표시 - 가운데에 스티커 사진이 보이도록 래퍼로 감쌈 */}
+            <div className="image-wrapper">
+              <img src={item.imageUrl} alt={`${item.characterName || item.character} 스티커`} className="gallery-image" />
+            </div>
+            
+            <div className="gallery-info">
+              {/* DB의 캐릭터 이름 */}
+              <h3 className="character-name">{item.characterName || item.character}</h3>
+              {/* DB의 날짜 */}
+              <p className="created-date">{formatDate(item.createdAt)}</p>
+              <button className="delete-photo-btn" onClick={() => handleDelete(item.id)} style={{marginTop:8, background:'#e74c3c', color:'#fff', border:'none', padding:'6px 10px', borderRadius:6, cursor:'pointer'}}>삭제</button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

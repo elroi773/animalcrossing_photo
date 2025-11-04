@@ -2,13 +2,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Intro from "./intro";
 import ChoosePhoto from "./Choose_photo";
-import Gallery from "./Gallery";
+// import Gallery from "./Gallery";
 import Twophoto from "./twophoto";
 import Fourphoto from "./fourphoto";
 import Fivephoto from "./fivephoto";
 import Takephoto from "./Take_photo";
 import Result from "./Result";
-import StickerResult from "./sticker";
+import StickerResult from "./StickerResult.jsx";
+import Gallery from "./Gallery.jsx";
 
 function App() {
 
