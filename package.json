@@ -12,9 +12,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "axios": "^1.11.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
+    "emailjs": "^4.0.3",
     "express": "^5.1.0",
     "html-to-image": "^1.11.13",
     "html2canvas": "^1.4.1",

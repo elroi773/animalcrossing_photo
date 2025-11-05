@@ -64,14 +64,14 @@
 .gallery-image {
   width: 100%;
   height: 100%; /* 래퍼 높이에 100% 맞춤 */
-  object-fit: cover; 
+  object-fit: cover;
   object-position: center; /* 이미 잘린 이미지이므로 중앙 정렬 */
   display: block;
 }
 
 .image-wrapper {
   width: 100%;
-  height: 250px;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,8 +81,8 @@
 
 /* 작은 화면에서 높이 조절 */
 @media (max-width: 600px) {
-  .image-wrapper { 
-    height: 200px; 
+  .image-wrapper {
+    height: 200px;
   }
 }
 

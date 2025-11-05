@@ -5,7 +5,7 @@ import { toPng } from 'html-to-image';
 
 // 분리된 파일 import
 import { stickerSources } from "./stickerData.js";
-import Sticker from "./Sticker.jsx";
+import Sticker from "./sticker.jsx";
 import { useStickerInteraction } from "./useSticker.js"; 
 
 // 메인 컴포넌트가 사용하는 이미지
@@ -77,7 +77,12 @@ export default function StickerResult() {
           const savedData = await uploadImageToServer(capturedImageDataUrl, villagerName);
           
           console.log(`✅ 최종 이미지 저장 완료!`, savedData);
-          navigate("/gallery"); // 갤러리로 이동
+          
+          const handleNavigate = (path) => {
+            navigate(path, { state: { image: capturedImageDataUrl } }); // 이미지 전달
+          };
+
+          handleNavigate("/send");
           
       } catch (error) {
           console.error("이미지 캡처 및 저장 실패:", error);

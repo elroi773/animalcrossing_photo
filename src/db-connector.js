@@ -1,14 +1,19 @@
-import mysql from 'mysql2/promise';
-import dotenv from 'dotenv';
+import mysql from "mysql2/promise";
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
+import dotenv from "dotenv";
 
-// Load .env from project root
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// .env 경로 설정
+dotenv.config({ path: resolve(__dirname, "../.env") });
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST ?? 'localhost',
-  user: process.env.DB_USER ?? 'photo_user',
-  password: process.env.DB_PASS ?? 'yourPasswordHere',
-  database: process.env.DB_NAME ?? 'photos_db',
+  host: process.env.DB_HOST ?? "localhost",
+  user: process.env.DB_USER ?? "root",
+  password: process.env.DB_PASS ?? "",
+  database: process.env.DB_NAME ?? "photos_db",
   port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3306,
   waitForConnections: true,
   connectionLimit: Number(process.env.DB_CONN_LIMIT ?? 10),
