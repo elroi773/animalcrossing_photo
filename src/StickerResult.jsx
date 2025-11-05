@@ -62,32 +62,41 @@ export default function StickerResult() {
   };
 
   const handleFinish = async () => {
-      setActiveStickerId(null);
-      if (!stickerFrameRef.current) return;
-      
-      await new Promise(resolve => setTimeout(resolve, 50)); 
-      
-      try {
-          const capturedImageDataUrl = await toPng(stickerFrameRef.current, {
-              quality: 0.95, 
-              backgroundColor: null, 
-              skipFonts: true
-          });
+    setActiveStickerId(null);
+    if (!stickerFrameRef.current) return;
+    
+    await new Promise(resolve => setTimeout(resolve, 50));
 
-          const savedData = await uploadImageToServer(capturedImageDataUrl, villagerName);
-          
-          console.log(`✅ 최종 이미지 저장 완료!`, savedData);
-          
-          const handleNavigate = (path) => {
-            navigate(path, { state: { image: capturedImageDataUrl } }); // 이미지 전달
-          };
+    try {
+      // 첫 번째 캡처 — 원본 크기로 DB 업로드
+      const originalImage = await toPng(stickerFrameRef.current, {
+        quality: 0.95,
+        backgroundColor: null,
+        skipFonts: true,
+      });
 
-          handleNavigate("/send");
-          
-      } catch (error) {
-          console.error("이미지 캡처 및 저장 실패:", error);
-      }
+      await uploadImageToServer(originalImage, villagerName);
+      console.log("✅ 원본 업로드 완료");
+
+      // 두 번째 캡처 — 리사이즈/자른 버전 (예: 420x650)
+      const resizedImage = await toPng(stickerFrameRef.current, {
+        quality: 0.95,
+        width: 420,   // 원하는 출력 가로
+        height: 650,  // 원하는 출력 세로
+        backgroundColor: null,
+        skipFonts: true,
+      });
+
+      console.log("✅ 리사이즈된 이미지 생성 완료");
+
+      // Send 페이지로 이동 (리사이즈 버전 전달)
+      navigate("/send", { state: { image: resizedImage } });
+
+    } catch (error) {
+      console.error("이미지 캡처/업로드 실패:", error);
+    }
   };
+
 
   const containerStyle = {
     backgroundImage: `url(${bgImg})`,

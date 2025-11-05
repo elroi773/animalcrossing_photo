@@ -34,56 +34,20 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* .image-wrapper {
-  width: 100%;
-  height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background: #fff;
-} */
-
-/* .gallery-image {
-  min-width: 200%;
-  height: 250px;
-  object-fit: cover;
-  object-position: left center;
-  display: block;
-  transform: translateX(calc(-1 * var(--gallery-image-shift)));
-}
-
-@media (max-width: 600px) {
-  :root { --gallery-image-shift: 25%; }
-  .image-wrapper { height: 200px; }
-  .gallery-image { height: 200px; min-width: 180%; }
-} */
-
-/* gallery.css (48행부터) */
-
-.gallery-image {
-  width: 100%;
-  height: 100%; /* 래퍼 높이에 100% 맞춤 */
-  object-fit: cover;
-  object-position: center; /* 이미 잘린 이미지이므로 중앙 정렬 */
-  display: block;
-}
-
 .image-wrapper {
   width: 100%;
   height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  background: #fff; /* keep card background */
+  background: #fff;
+  overflow: hidden; /* 유지 가능 */
 }
 
-/* 작은 화면에서 높이 조절 */
-@media (max-width: 600px) {
-  .image-wrapper {
-    height: 200px;
-  }
+.gallery-image {
+  height: 100%; /* 래퍼 높이에 100% 맞춤 */
+  object-position: center; /* 이미 잘린 이미지이므로 중앙 정렬 */
+  display: block;
 }
 
 .gallery-info {
