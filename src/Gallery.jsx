@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './Gallery.css'; 
+import './Gallery.css';
+import HomeImg from "./img/home_button.png";
+import { useNavigate } from 'react-router-dom';
 
 export default function Gallery() {
   const [stickers, setStickers] = useState([]); 
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   const handleDelete = async (id) => {
     if (!confirm('정말 이 사진을 삭제하시겠어요?')) return;
@@ -76,6 +79,10 @@ export default function Gallery() {
     });
   };
 
+  const handleNavigate = (path) => {
+    navigate(path);
+  };
+
   // 로딩 중일 때
   if (isLoading) {
     return <div className="gallery-container"><h2>갤러리 로딩 중...</h2></div>;
@@ -84,6 +91,12 @@ export default function Gallery() {
   // 로딩 완료 후
   return (
     <div className="gallery-container">
+      <div className="gallery-header">
+        <button className="home-btn" onClick={() => handleNavigate("/")}>
+          <img src={HomeImg} alt="홈(인트로) 버튼 사진" />
+        </button>
+      </div>
+
       <div className="gallery-grid">
         {stickers.map((item) => (
           <div key={item.id} className="gallery-item"> 

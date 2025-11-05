@@ -1,6 +1,6 @@
 // App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Intro from "./intro";
+import Intro from "./Intro.jsx";
 import ChoosePhoto from "./Choose_photo";
 import Twophoto from "./twophoto";
 import Fourphoto from "./fourphoto";
